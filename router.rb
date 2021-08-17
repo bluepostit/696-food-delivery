@@ -26,6 +26,7 @@ class Router
   def dispatch(action)
     case action
     when 1 then @meals_controller.list
+    when 2 then @meals_controller.create
     when 0 then stop
     end
   end
