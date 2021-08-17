@@ -13,12 +13,12 @@ class MealsController
     @view.display(meals)
   end
 
-  def create
+  def add
     # ask user for meal name
     # ask user for meal price
     name = @view.ask_user_for('meal name')
-    price = @view.ask_user_for('meal price')
+    price = @view.ask_user_for_price
     meal = Meal.new(name: name, price: price)
-    @meal_repository.add(meal)
+    @meal_repository.create(meal)
   end
 end

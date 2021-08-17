@@ -13,12 +13,12 @@ class CustomersController
     @view.display(customers)
   end
 
-  def create
+  def add
     # ask user for customer name
     # ask user for customer address
     name = @view.ask_user_for('customer name')
     address = @view.ask_user_for('customer address')
     customer = Customer.new(name: name, address: address)
-    @customer_repository.add(customer)
+    @customer_repository.create(customer)
   end
 end

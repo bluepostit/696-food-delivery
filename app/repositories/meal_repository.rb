@@ -17,11 +17,15 @@ class MealRepository
     @meals
   end
 
-  def add(meal)
+  def create(meal)
     meal.id = @next_id
     @next_id += 1
     @meals << meal
     store_csv
+  end
+
+  def find(id)
+    @meals.find { |meal| meal.id == id }
   end
 
   private
