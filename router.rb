@@ -29,6 +29,7 @@ class Router
     when 1 then @meals_controller.list
     when 2 then @meals_controller.create
     when 3 then @customers_controller.list
+    when 4 then @customers_controller.create
     when 0 then stop
     end
   end
@@ -43,6 +44,7 @@ class Router
     puts '1. List all meals'
     puts '2. Add a meal'
     puts '3. List all customers'
+    puts '4. Add a customer'
     puts '0. Exit'
   end
 end

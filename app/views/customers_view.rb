@@ -4,4 +4,10 @@ class CustomersView
       puts "#{index + 1}. #{customer.name} - #{customer.address}"
     end
   end
+
+  def ask_user_for(item)
+    puts "Please enter the #{item}"
+    print '> '
+    gets.chomp
+  end
 end
