@@ -11,17 +11,12 @@ class Router
   def run
     while @running
       # Log in! Returns an Employee instance...
-      employee = sign_in
-      if employee.manager?
-        display_manager_menu
+      @employee = sign_in
+      while @employee # loop as long as @employee is not false/nil
+        display_menu
         action = user_action
         print `clear`
-        dispatch_manager_action(action)
-      else
-        display_rider_menu
-        action = user_action
-        print `clear`
-        dispatch_rider_action(action)
+        dispatch_action(action)
       end
     end
     puts "Bye!"
@@ -39,12 +34,21 @@ class Router
     gets.chomp.to_i
   end
 
+  def dispatch_action(action)
+    if @employee.manager?
+      dispatch_manager_action(action)
+    else
+      dispatch_rider_action(action)
+    end
+  end
+
   def dispatch_manager_action(action)
     case action
     when 1 then @meals_controller.list
     when 2 then @meals_controller.create
     when 3 then @customers_controller.list
     when 4 then @customers_controller.create
+    when 9 then sign_out
     when 0 then stop
     end
   end
@@ -53,12 +57,26 @@ class Router
     case action
     when 1 then puts 'To do...'
     when 2 then puts 'To do...'
+    when 9 then sign_out
     when 0 then stop
     end
   end
 
   def stop
+    sign_out
     @running = false
+  end
+
+  def sign_out
+    @employee = nil
+  end
+
+  def display_menu
+    if @employee.manager?
+      display_manager_menu
+    else
+      display_rider_menu
+    end
   end
 
   def display_manager_menu
@@ -68,6 +86,7 @@ class Router
     puts '2. Add a meal'
     puts '3. List all customers'
     puts '4. Add a customer'
+    puts '9. Sign out'
     puts '0. Exit'
   end
 
@@ -76,6 +95,7 @@ class Router
     puts "-------------------------"
     puts '1. List my orders'
     puts '2. Deliver an order'
+    puts '9. Sign out'
     puts '0. Exit'
   end
 end
