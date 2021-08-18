@@ -47,8 +47,11 @@ class OrderRepository
       row[:delivered] = row[:delivered] == 'true'
       row[:meal] = @meal_repository.find(row[:meal_id].to_i)
       row[:customer] = @customer_repository.find(row[:customer_id].to_i)
-      row[:employee] = @employee_repository.find(row[:employee_id].to_i)
+      employee = @employee_repository.find(row[:employee_id].to_i)
+      row[:employee] = employee
       order = Order.new(row)
+      # Also add the order to the employee!
+      employee.add_order(order)
       @orders << order
     end
     @next_id = @orders.max { |order| order.id }.id + 1 unless @orders.empty?

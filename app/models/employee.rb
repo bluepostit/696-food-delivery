@@ -7,7 +7,7 @@ class Employee
 
   # Behavior
 
-  attr_reader :username, :password, :role
+  attr_reader :username, :password, :role, :orders
   attr_accessor :id
 
   def initialize(attr = {})
@@ -15,6 +15,7 @@ class Employee
     @username = attr[:username]
     @password = attr[:password]
     @role = attr[:role]
+    @orders = []
   end
 
   def manager?
@@ -23,5 +24,13 @@ class Employee
 
   def rider?
     @role == 'rider'
+  end
+
+  def undelivered_orders
+    @orders.reject { |order| order.delivered? }
+  end
+
+  def add_order(order)
+    @orders << order
   end
 end

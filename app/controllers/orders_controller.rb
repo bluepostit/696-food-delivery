@@ -21,6 +21,13 @@ class OrdersController
     @view.display(orders)
   end
 
+  def list_my_undelivered(employee)
+    # get all undelivered orders FOR THIS EMPLOYEE from repo
+    # display them in the view
+    orders = employee.undelivered_orders
+    @view.display(orders)
+  end
+
   def create
     # display all meals
     # ask user for the meal

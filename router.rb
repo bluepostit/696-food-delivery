@@ -59,7 +59,7 @@ class Router
 
   def dispatch_rider_action(action)
     case action
-    when 1 then puts 'To do...'
+    when 1 then @orders_controller.list_my_undelivered(@employee)
     when 2 then puts 'To do...'
     when 9 then sign_out
     when 0 then stop
