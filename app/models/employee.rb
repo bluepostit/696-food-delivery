@@ -20,4 +20,8 @@ class Employee
   def manager?
     @role == 'manager'
   end
+
+  def rider?
+    @role == 'rider'
+  end
 end

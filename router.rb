@@ -51,6 +51,7 @@ class Router
     when 3 then @customers_controller.list
     when 4 then @customers_controller.create
     when 5 then @orders_controller.list_undelivered
+    when 6 then @orders_controller.create
     when 9 then sign_out
     when 0 then stop
     end
@@ -90,6 +91,7 @@ class Router
     puts '3. List all customers'
     puts '4. Add a customer'
     puts '5. List undelivered orders'
+    puts '6. Create an order'
     puts '9. Sign out'
     puts '0. Exit'
   end

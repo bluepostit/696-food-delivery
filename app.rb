@@ -25,7 +25,10 @@ order_repository = OrderRepository.new(orders_csv_path,
                                        meal_repository,
                                        customer_repository,
                                        employee_repository)
-orders_controller = OrdersController.new(order_repository)
+orders_controller = OrdersController.new(meal_repository,
+                                         customer_repository,
+                                         employee_repository,
+                                         order_repository)
 
 router = Router.new(meals_controller,
                     customers_controller,
